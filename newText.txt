@@ -1,5 +1,5 @@
 git 123456
-git add
+git add add file
 git commit -m
 git status
 git diff
