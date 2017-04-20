@@ -3,6 +3,6 @@ git add add file 添加修改的文件到暂存区
 git commit -m 把暂存区的文件提交到仓库
 git status 查看工作区与暂存区的文件差别
 git diff 查看工作区与暂存区的文件的具体差别（修改了哪些内容）
-git log
+git log	查看提交日志
 git reset -hard HEAD^
 git reflog
