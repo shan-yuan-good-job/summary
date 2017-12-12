@@ -1,0 +1,32 @@
+mkdir filebname 创建文件夹
+
+git add add file 添加修改的文件到暂存区
+
+git commit -m 把暂存区的文件提交到仓库
+
+git status 查看工作区与暂存区的文件差别
+
+git diff 查看工作区与暂存区的文件的具体差别（修改了哪些内容）
+
+git log	查看提交日志
+
+git reset -hard HEAD^  回退版本以及返回回退前的版本(能够把暂存区的文件回退，重回工作区git reset -hard HEAD)
+
+git reflog 用来查看git commit与git reset的指令记录（查看commit id）
+
+git checkout --file 丢弃工作区的修改
+
+git push （-u(第一次将内容推送到远程库添加-u)）origin master
+
+git remote add origin git@server-name
+(github.com):lanyunys2015/repository-name.git
+
+git branch 列出所有分支
+
+git checkout -b branchName 表示创建分支并切换
+
+git checkout branchName (分支名) 切换分支
+
+git merge branchName 合并指定分支到当前分支
+
+git branch -d branchName 删除分支
