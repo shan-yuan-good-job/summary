@@ -1,8 +1,10 @@
 mkdir filebname 创建文件夹
 
-git add add file 添加修改的文件到暂存区
+git add file 添加修改的文件到暂存区
+git add --all . 把工作区所有改动文件添加到暂存区
 
-git commit -m 把暂存区的文件提交到仓库
+git commit -m ""把暂存区的文件提交到仓库
+git commit -am ""把暂存区的所有文件提交到仓库
 
 git status 查看工作区与暂存区的文件差别
 
