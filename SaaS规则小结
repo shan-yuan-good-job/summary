@@ -9,3 +9,46 @@
                                
   4、变量名称里面关于中划线与下划线 ‘-’ ‘_’ ，这两种线是通用的，即：$link-color: blue ==  $link_color: blue ;
   
+二、嵌套规则
+
+  1、父选择器标识符 &: article a {
+                        color: blue;
+                        &:hover { color: red }
+                      }
+                      /*编译后*/
+                      article a { color: blue }
+                      article a:hover { color: red }
+                      
+                      #content aside {
+                        color: red;
+                        body.ie & { color: green }
+                      }
+                      /*编译后*/
+                      #content aside {color: red};
+                      body.ie #content aside { color: green }
+                    
+  2、群组选择器的嵌套： .container {
+                        h1, h2, h3 {margin-bottom: .8em}
+                      }
+                      /*编译后*/
+                      .container h1, .container h2, .container h3 { margin-bottom: .8em }
+                    
+   3、子组合选择器和同层组合选择器：>、+和~ ；
+   
+   4、嵌套属性：nav {
+                border: {
+                style: solid;
+                width: 1px;
+                color: #ccc;
+                }
+              }
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
