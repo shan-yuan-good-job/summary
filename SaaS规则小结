@@ -1,0 +1,11 @@
+一、变量
+
+  1、变量以“$”开头； $highlight-color: #F90;
+  
+  2、变量的作用域类似与es6的 'let变量' 具有块的概念；
+  
+  3、变量里面可以继续嵌套变量；   $highlight-color: #F90;
+                               $highlight-border: 1px solid $highlight-color;
+                               
+  4、变量名称里面关于中划线与下划线 ‘-’ ‘_’ ，这两种线是通用的，即：$link-color: blue ==  $link_color: blue ;
+  
