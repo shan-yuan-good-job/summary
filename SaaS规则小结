@@ -65,6 +65,58 @@
                                                                               color /* 这块注释内容不会出现在生成的css中 */: #333;
                                                                               padding: 1; /* 这块注释内容也不会出现在生成的css中 */ 0;
                                                                             }
+ 五、混合器
+    
+     1、定义：由@mixin 标识，由@include 引用。当有大段的代码需要重复使用时，则一般使用混合器。大量使用可能导致加载缓慢。
+     @mixin rounded-corners {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+      }
+      
+      .notice {
+        background-color: green;
+        border: 2px solid #00aa00;
+        @include rounded-corners;
+      }
+      
+      2、混合器的使用规则和变量的使用规则一样；
+      
+      3、混合器传参，可以单个传参也可以以"key:value"的形式传参；@mixin link-colors($normal, $hover, $visited) {
+                                                              color: $normal;
+                                                              &:hover { color: $hover; }
+                                                              &:visited { color: $visited; }
+                                                            }
+                                                            
+                                                            a {
+                                                              @include link-colors(blue, red, green);
+                                                            }
+                                                            或者
+                                                            a {
+                                                                @include link-colors(
+                                                                  $normal: blue,
+                                                                  $visited: green,
+                                                                  $hover: red
+                                                              );
+                                                            }
+        4、设定默认参数：
+        @mixin link-colors(
+          $normal,
+          $hover: $normal,
+          $visited: $normal
+        )
+
+  六、继承 @extend
+    
+      .error {
+        border: 1px solid red;
+        background-color: #fdd;
+      }
+      .seriousError {
+        @extend .error;
+        border-width: 3px;
+      }
+
 
 
 
