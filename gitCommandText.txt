@@ -8,18 +8,20 @@ git基本概念： Workspace(工作区) ————————> Starge Area(�
 git 回退：  第一种情况： 只在本地工作区修改了文件还没有提交到暂存区（即没有执行git add 命令）   git checkout .  or  git reset --hard
          
            第二种情况： 已将工作区的修改提交到了暂存区还没有提交到本地仓库（即执行了git add 还没执行 git commit）   
-                       git reset ————> git checkout .   or   git reser --hard
+                       git reset ————> git checkout .   or   git reset --hard
                        
                        （原理：git reset 命令撤销git add 命令的提交，再执行git checkout . 放弃之前的修改）
                      
-           第三种情况： 已将暂存区的内容提交到本地仓库（还没有执行git push）   git reset --hard origin master(dev)
-           
+           第三种情况： 已将暂存区的内容提交到本地仓库（还没有执行git push）   git reset --hard origin master(dev)  or git reset --hard HEAD^
+            
                        （原理：此时本地仓库已经被污染，远程仓库还没有受影响，那就将远程仓库的代码取回到本地仓库）
                        
            第四种情况： 已将本地仓库的内容提交推送到了远程仓库（执行了git push）   git reset --hard HEAD^ ————> git push -f
            
                        (原理：执行git push后，本地仓库与远程仓库代码一样，已经等价，将本地仓库的代码回退到前一次提交，再将本地仓库的代码推向
                        远程仓库，进行覆盖。)
+                       
+                       (HEAD: 代表当前版本，HEAD^: 代表上一个版本，HEAD^^: 代表上上个版本，HEAD~100:代表上一百个版本)
 
 mkdir filebname 创建文件夹
 
@@ -37,7 +39,9 @@ git diff master(dev) origin/master(dev) 比较本地仓库与远程仓库的区�
 
 git log	查看提交日志
 
-git reset -hard HEAD^  回退版本以及返回回退前的版本(能够把暂存区的文件回退，重回工作区git reset -hard HEAD)
+git reset --hard HEAD^  
+          --hard commit Id(回退到指定版本)
+
 
 git reflog 用来查看git commit与git reset的指令记录（查看commit id）
 
