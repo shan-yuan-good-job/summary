@@ -1,1 +1,57 @@
+1. 方法调用模式      2. 函数调用模式      3. 构造器调用模式        4. apply调用模式        5. setTimeout(fn, time)
 
+6. let, var , const 区别
+
+一、方法调用模式
+    this 指向方法的调用者
+    例：let Obj = {
+          const a = 3;
+          getValue() {
+            return this.a;
+          }
+        }
+    Obj.getValue(); // 3   this指向obj
+    
+二、函数调用模式
+    this 指向window
+    例：var a = 3;
+        let b = 4;
+        function demo() {
+          return this.a; //3
+          return this.b; //undefined  let申明的全局变量不是全局对象（window）的属性
+        }
+        demo(); // 3
+        
+三、构造器调用模式
+    this 指向new申明的实列
+    例： function Person(a) {
+          let age = a;
+          getAge() {
+            return this.age
+          }
+        }
+        let yong = new Person('18');
+        yong.getAge();
+        
+四、apply调用模式
+    this 指向方法的第一个参数，可以改变this指向，实现继承
+    
+五、setTimeout(fn, time)
+    fn函数（非箭头函数）中, this指向window;
+    
+六、let, var, const 函数区别
+    本质区别：作用域不同
+  (1). let 作用域为块级作用域 即{}内， 例：if(){let a;} a变量只在if语句块内有效
+    var 作用域为函数级 即function内， 例：function bb(){ if(){var b=1;} console.log(b)} //1 var作用域为函数作用域，故会发生变量提升到函数边界。
+    
+  (2). let 申明的全局变量不是挂载在window上  var 申明的全局变量挂载在window上。 
+
+  (3). let 申明变量可能会出现死区效应 即：let foo = 'foo';
+                                        if(true){
+                                            console.log(foo);
+                                            let foo = 'foo bar';
+                                            console.log(foo);
+                                        }
+                                        第一次输出报错
+
+   const 一般用来申明常量
