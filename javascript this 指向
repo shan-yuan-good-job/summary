@@ -1,6 +1,8 @@
 1. 方法调用模式      2. 函数调用模式      3. 构造器调用模式        4. apply调用模式        5. setTimeout(fn, time)
 6. let, var , const 区别                7. class知识点
 
+# this本质为指向函数运行环境
+
 一、方法调用模式
     this 指向方法的调用者
     例：let Obj = {
