@@ -58,6 +58,10 @@ git branch 列出所有分支
 
 git checkout -b branchName 表示创建分支并切换
 
+git checkout -b dev origin/dev 创建dev分支并链接到远程dev分支上
+
+git remote 查看远程仓库的信息
+
 git checkout branchName (分支名) 切换分支
 
 git merge branchName 合并指定分支到当前分支
