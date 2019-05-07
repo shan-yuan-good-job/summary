@@ -1,3 +1,5 @@
 注意事项：
     1、vue 中按需引用vux中的ui组件时，特别注意单双引号的问题
         列： import { Tab, TabItem } from 'vux'   不能写成 import { Tab, TabItem } from "vux" 。否则将引起打包文件过大。
+    
+    2、npm run build 之后的 vendor.js 文件 由 main.js 文件中的依赖打包而成，要减小 vendor 文件的大小可以减少全局依赖的引用或者使用cdn。
