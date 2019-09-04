@@ -1,0 +1,121 @@
+一、变量
+
+  1、变量以“$”开头； $highlight-color: #F90;
+  
+  2、变量的作用域类似与es6的 'let变量' 具有块的概念；
+  
+  3、变量里面可以继续嵌套变量；   $highlight-color: #F90;
+                               $highlight-border: 1px solid $highlight-color;
+                               
+  4、变量名称里面关于中划线与下划线 ‘-’ ‘_’ ，这两种线是通用的，即：$link-color: blue ==  $link_color: blue ;
+  
+二、嵌套规则
+
+  1、父选择器标识符 &: article a {
+                        color: blue;
+                        &:hover { color: red }
+                      }
+                      /*编译后*/
+                      article a { color: blue }
+                      article a:hover { color: red }
+                      
+                      #content aside {
+                        color: red;
+                        body.ie & { color: green }
+                      }
+                      /*编译后*/
+                      #content aside {color: red};
+                      body.ie #content aside { color: green }
+                    
+  2、群组选择器的嵌套： .container {
+                        h1, h2, h3 {margin-bottom: .8em}
+                      }
+                      /*编译后*/
+                      .container h1, .container h2, .container h3 { margin-bottom: .8em }
+                    
+   3、子组合选择器和同层组合选择器：>、+和~ ；
+   
+   4、嵌套属性：nav {
+                border: {
+                style: solid;
+                width: 1px;
+                color: #ccc;
+                }
+              }
+三、@import SASS 文件
+
+    1、使用@import 导入SAAS文件可以省略.sass or .scss后缀；
+    
+    2、sass局部文件的文件名以“_”开头，引用sass局部文件时可以省略"_"；
+    
+    3、设定默认变量值 "!default"，主要用于变量，可以被覆盖；
+    
+    4、嵌套导入：SASS允许@!import 命令写在css文件内；
+    
+    5、导入原生css文件，可以把原生css文件后缀改为.sass文件后缀；
+    
+    6、sass文件可以在生成的css文件中抹掉注释，原生css文件则不行；
+    
+四、静默注释
+    
+    1、"//",将不出现在编译后的css文件中；
+    
+    2、原生css注释"/* xxx */"亦可以在编译后不出现，只要注释的内容在css规则里面；
+                                                                            body {
+                                                                              color /* 这块注释内容不会出现在生成的css中 */: #333;
+                                                                              padding: 1; /* 这块注释内容也不会出现在生成的css中 */ 0;
+                                                                            }
+ 五、混合器
+    
+     1、定义：由@mixin 标识，由@include 引用。当有大段的代码需要重复使用时，则一般使用混合器。大量使用可能导致加载缓慢。
+     @mixin rounded-corners {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+      }
+      
+      .notice {
+        background-color: green;
+        border: 2px solid #00aa00;
+        @include rounded-corners;
+      }
+      
+      2、混合器的使用规则和变量的使用规则一样；
+      
+      3、混合器传参，可以单个传参也可以以"key:value"的形式传参；@mixin link-colors($normal, $hover, $visited) {
+                                                              color: $normal;
+                                                              &:hover { color: $hover; }
+                                                              &:visited { color: $visited; }
+                                                            }
+                                                            
+                                                            a {
+                                                              @include link-colors(blue, red, green);
+                                                            }
+                                                            或者
+                                                            a {
+                                                                @include link-colors(
+                                                                  $normal: blue,
+                                                                  $visited: green,
+                                                                  $hover: red
+                                                              );
+                                                            }
+        4、设定默认参数：
+        @mixin link-colors(
+          $normal,
+          $hover: $normal,
+          $visited: $normal
+        )
+
+  六、继承 @extend
+    
+      .error {
+        border: 1px solid red;
+        background-color: #fdd;
+      }
+      .seriousError {
+        @extend .error;
+        border-width: 3px;
+      }
+
+
+

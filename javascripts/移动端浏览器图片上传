@@ -1,0 +1,44 @@
+移动端浏览器图片上传小结
+
+核心代码 <input type="file" accept="image/*" capture name="" value="">
+
+利用h5 input元素的新特性 type = 'file' 选择文件
+
+                        accept 代表接收文件的类型 'image/*' 表示接收所有的图片格式
+                        
+                        capture表示，可以捕获到系统默认的设备，比如：camera--照相机；camcorder--摄像机；microphone--录音
+                        
+                        multiple表示： 可以支持多选, 比如同时支持 camera--照相机；camcorder--摄像机；microphone--录音
+                        
+通过input 选择图片之后通过表单提交给后台
+
+核心代码如下
+      
+            <form action="" method="post" enctype="" id="importForm">
+              <input type="file" accept="image/*" capture name="qqfile" value="" class="hide" id="takePhoto" onchange="uploadFile()">
+              <input type="submit" id="uploadData" class="hide"/>
+            </form>
+            
+            // 上传图片
+            var uploadFile = function() {
+              var file = $('#takePhoto').val()
+              if (!file) {
+                return false
+              }
+              $("#importForm").attr('enctype', 'multipart/form-data')
+              var formData = new FormData($("#importForm")[0])
+              $.ajax({
+                type: "POST",
+                data: formData,
+                url: 'http://bs.papasports.com.cn/api/img/uploader/dir/shop',
+                contentType: false,
+                processData: false,
+              }).success(function (data) {
+                var datas = JSON.parse(data)
+                $('#avatar').attr('src', datas.data.imgUrl)
+                param.image = datas.data.imgUrl
+              }).error(function(er) {
+                alert(JSON.stringify(er))
+              })
+            }
+上传接口是将base64 编码的图片发送给服务器，接口返回图片地址，然后将图片地址发送给后台，上传结束。                   
