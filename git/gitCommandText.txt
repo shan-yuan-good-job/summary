@@ -67,3 +67,13 @@ git checkout branchName (分支名) 切换分支
 git merge branchName 合并指定分支到当前分支
 
 git branch -d branchName 删除分支
+
+git branch -r //查看远程所有分支
+
+git branch -a //查看本地和远程的所有分支
+
+git fetch <远程主机名> //这个命令将某个远程主机的更新全部取回本地
+
+git fetch <远程主机名> <分支名> //注意之间有空格 取回特定分支的更新
+
+git log FETCH_HEAD //查看刚取回的更新信息
